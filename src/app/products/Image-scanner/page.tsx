@@ -10,7 +10,7 @@ const GraphicDesignPage = () => {
 
   return (
     <>
-      <span className="font-bold text-4xl">Graphic Design</span>
+      <span className="font-bold text-4xl">Image scanner</span>
 
       {/* Render the ImageScanner component */}
       <Scanner />

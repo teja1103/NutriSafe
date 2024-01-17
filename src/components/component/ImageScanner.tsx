@@ -39,8 +39,8 @@ const Scanner: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Image Scanner</h1>
+    <div style={{display:'flex' , justifyContent:'center', alignItems:'center'}}>
+      
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <Webcam
         audio={false}

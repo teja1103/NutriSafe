@@ -5,18 +5,18 @@ import {SideNavItems} from "./types";
 export const SIDENAV_ITEMS: SideNavItems[] =[
     {
         title:"Home",
-        path:"/",
+        path:"/home",
         icon:<Icon icon="lucide:home" width="24" height="24"/>
     },
     {
         title:"Products",
-        path:"/Products",
+        path:"/products",
         icon: <Icon icon="lucide:folder" width="24" height="24"/>,
         submenu: true,
         subMenuItems: [
 
-            {title:"Recipe maker", path:"/projects/recipe-maker"},
-            {title:"Fake food detector", path:"/projects/Image-scanner"},
+            {title:"Recipe maker", path:"/products/recipe-maker"},
+            {title:"Fake food detector", path:"/products/Image-scanner"},
         ],
     },
     {
