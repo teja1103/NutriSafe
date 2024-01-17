@@ -1,0 +1,49 @@
+{
+  "name": "next-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@clerk/nextjs": "^4.29.3",
+    "@iconify/react": "^4.1.1",
+    "@radix-ui/react-avatar": "^1.0.4",
+    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/themes": "^2.0.3",
+    "@tremor/react": "^3.13.1",
+    "@zeit/next-css": "1.0.1",
+    "axios": "^1.6.5",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "css-loader": "3.6.0",
+    "framer-motion": "^10.18.0",
+    "mini-css-extract-plugin": "2.7.7",
+    "next": "14.0.4",
+    "next-images": "1.8.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.3",
+    "react-html5-camera-photo": "^1.5.11",
+    "react-webcam": "^7.2.0",
+    "styled-components": "^6.1.8",
+    "tailwind-merge": "^2.2.0",
+    "tremor": "^0.0.1",
+    "webpack": "5.89.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "14.0.4",
+    "next-compose-plugins": "^2.2.1",
+    "postcss": "^8.4.33",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3"
+  }
+}
