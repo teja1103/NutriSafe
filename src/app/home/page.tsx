@@ -1,3 +1,4 @@
+"use client"
 // import { Widget,addResponseMessage } from "react-chat-widget";
 import { useEffect } from "react";
 

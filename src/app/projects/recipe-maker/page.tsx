@@ -18,8 +18,8 @@ const RecipesPage: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.get(
-        https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredients}&apiKey=79bf2aee1a11496db3e9786608a1153f&limitLicense=true
+      const response = await axios.get(`
+        https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredients}&apiKey=79bf2aee1a11496db3e9786608a1153f&limitLicense=true`
       );
 
       setRecipes(response.data);
@@ -30,8 +30,8 @@ const RecipesPage: React.FC = () => {
 
   const fetchRecipeDetails = async (recipeId: number) => {
     try {
-      const response = await axios.get(
-        https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=79bf2aee1a11496db3e9786608a1153f
+      const response = await axios.get(`
+        https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=79bf2aee1a11496db3e9786608a1153f`
       );
 
       setSelectedRecipe(response.data);
