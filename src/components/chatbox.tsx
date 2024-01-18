@@ -1,21 +1,21 @@
-import React from 'react';
-import { Widget } from 'react-chat-widget';
+// import React from 'react';
+// import { Widget } from 'react-chat-widget';
 
-import 'react-chat-widget/lib/styles.css';
+// import 'react-chat-widget/lib/styles.css';
 
-function chatbox() {
-  const handleNewUserMessage = (newMessage) => {
-    console.log(`New message incoming! ${newMessage}`);
-    // Now send the message throught the backend API
-  };
+// function chatbox() {
+//   const handleNewUserMessage = (newMessage) => {
+//     console.log(`New message incoming! ${newMessage}`);
+//     // Now send the message throught the backend API
+//   };
 
-  return (
-    <div className="App">
-      <Widget
-        handleNewUserMessage={handleNewUserMessage}
-      />
-    </div>
-  );
-}
+//   return (
+//     <div className="App">
+//       <Widget
+//         handleNewUserMessage={handleNewUserMessage}
+//       />
+//     </div>
+//   );
+// }
 
-export default chatbox;
+// export default chatbox;

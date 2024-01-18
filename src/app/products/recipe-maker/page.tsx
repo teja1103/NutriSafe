@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
 interface Recipe {
@@ -7,6 +7,7 @@ interface Recipe {
   title: string;
   ingredients: string[];
   instructions: string;
+  extendedIngredients?: any[];
 }
 
 const RecipesPage: React.FC = () => {
@@ -18,8 +19,9 @@ const RecipesPage: React.FC = () => {
     e.preventDefault();
 
     try {
+      const apiKey = process.env.NEXT_PUBLIC_REACT_APP_SPOONACULAR_API_KEY;
       const response = await axios.get(`
-        https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredients}&apiKey=79bf2aee1a11496db3e9786608a1153f&limitLicense=true`
+        https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredients}&apiKey=${apiKey}&limitLicense=true`
       );
 
       setRecipes(response.data);
@@ -30,8 +32,9 @@ const RecipesPage: React.FC = () => {
 
   const fetchRecipeDetails = async (recipeId: number) => {
     try {
+      const apiKey = process.env.NEXT_PUBLIC_REACT_APP_SPOONACULAR_API_KEY;
       const response = await axios.get(`
-        https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=79bf2aee1a11496db3e9786608a1153f`
+        https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`
       );
 
       setSelectedRecipe(response.data);
@@ -39,7 +42,6 @@ const RecipesPage: React.FC = () => {
       console.error('Error fetching recipe details:', error);
     }
   };
-
   return (
     <div className="max-w-screen-md mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Recipes Page</h1>

@@ -11,7 +11,7 @@ import MarginWidthWrapper from '@/components/margin-width-wrapper';
 import PageWrapper from '@/components/page-wrapper';
 import SideNav from '@/components/side-nav';
 
-import { ClerkProvider } from "@clerk/nextjs";
+//import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -34,7 +34,6 @@ export default function RootLayout({
       <html lang="en">
         <body className={`bg-white${inter.className}`}>
           <div className="flex">
-            <ClerkProvider>
               <SideNav />
               <main className="flex-1">
                 <MarginWidthWrapper>
@@ -43,7 +42,7 @@ export default function RootLayout({
                   <PageWrapper>{children}</PageWrapper>
                 </MarginWidthWrapper>
               </main>
-            </ClerkProvider>
+ 
           </div>
         </body>
       </html>
