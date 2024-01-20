@@ -1,6 +1,6 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from 'react';
-import { Card } from '@tremor/react';
+import { Card, DonutChart, Title } from '@tremor/react';
 import axios from 'axios';
 
 interface Meal {
@@ -8,11 +8,25 @@ interface Meal {
   breakfast: string;
   lunch: string;
   dinner: string;
-  detailedRecipe?: string;
+  calories?: number;
 }
 
 const MealChart: React.FC = () => {
-  const [meals, setMeals] = useState<Meal[]>(getInitialMeals());
+  const [inputMeal, setInputMeal] = useState<Meal>({ day: 'Monday', breakfast: '', lunch: '', dinner: '' });
+  const [meals, setMeals] = useState<Meal[]>(getStoredMeals());
+
+  useEffect(() => {
+    saveMealsToStorage(meals);
+  }, [meals]);
+
+  function getStoredMeals(): Meal[] {
+    const storedMeals = localStorage.getItem('meals');
+    return storedMeals ? JSON.parse(storedMeals) : getInitialMeals();
+  }
+
+  function saveMealsToStorage(updatedMeals: Meal[]) {
+    localStorage.setItem('meals', JSON.stringify(updatedMeals));
+  }
 
   function getInitialMeals(): Meal[] {
     const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -22,107 +36,171 @@ const MealChart: React.FC = () => {
       breakfast: '',
       lunch: '',
       dinner: '',
-      detailedRecipe: ''
+      calories: 0,
     }));
   }
+  const calories = [
+    {
+      name: "Monday",
+      calories: 9800,
+    },
+    {
+      name: "Tuesday",
+      calories: 4567,
+    },
+    {
+      name: "Wednesday",
+      calories: 3908,
+    },
+    {
+      name: "Thursday",
+      calories: 2400,
+    },
+    {
+      name: "Friday",
+      calories: 1908,
+    },
+    {
+      name: "Saturday",
+      calories: 1398,
+    },
+    {
+      name: "Sunday",
+      calories: 1398,
+    },
+  ];
+  
+  
+  const valueFormatter = (number: number) => `$ ${new Intl.NumberFormat("us").format(number).toString()}`;
 
-  const handleMealChange = (index: number, mealType: keyof Meal, value: string) => {
-    setMeals(prevMeals => {
-      const updatedMeals = [...prevMeals];
-      updatedMeals[index][mealType] = value;
-      return updatedMeals;
-    });
+
+  const handleInputMealChange = (mealType: keyof Meal, value: string) => {
+    setInputMeal(prevInputMeal => ({
+      ...prevInputMeal,
+      [mealType]: value,
+    }));
   };
 
-  const handleRecipeClick = async (index: number) => {
-    const apiKey = process.env.NEXT_PUBLIC_REACT_APP_SPOONACULAR_API_KEY;
+  const handleAddMeal = () => {
+    setMeals(prevMeals =>
+      prevMeals.map(prevMeal =>
+        prevMeal.day === inputMeal.day ? { ...prevMeal, ...inputMeal } : prevMeal
+      )
+    );
+    setInputMeal({ day: 'Monday', breakfast: '', lunch: '', dinner: '' });
+  };
 
+  const handleResetMeals = () => {
+    setMeals(getInitialMeals());
+  };
+
+  const calculateCalories = async (meal: Meal) => {
     try {
+      const apiKey = process.env.NEXT_PUBLIC_REACT_APP_SPOONACULAR_API_KEY;
       const response = await axios.get(
-        'https://api.spoonacular.com/recipes/search',
+        `https://api.spoonacular.com/recipes/search`,
         {
           params: {
-            query: meals[index].dinner,
+            query: meal.dinner,
             apiKey,
           },
         }
       );
 
       if (response.data.results.length > 0) {
-        const detailedRecipe = response.data.results[0].instructions;
-        setMeals(prevMeals => {
-          const updatedMeals = [...prevMeals];
-          updatedMeals[index].detailedRecipe = detailedRecipe;
-          return updatedMeals;
-        });
+        const recipeId = response.data.results[0].id;
+        const caloriesResponse = await axios.get(
+          `https://api.spoonacular.com/recipes/${recipeId}/nutritionWidget.json`,
+          {
+            params: {
+              apiKey,
+            },
+          }
+        );
+        const calories = caloriesResponse.data.calories.value;
+        setMeals(prevMeals =>
+          prevMeals.map(prevMeal =>
+            prevMeal.day === meal.day ? { ...meal, calories } : prevMeal
+          )
+        );
       }
     } catch (error) {
-      console.error('Error fetching detailed recipe:', error);
+      console.error('Error calculating calories:', error);
     }
   };
-  const cardStyle = {
-    border: '1px solid #ccc',
-    borderRadius: '8px',
-    padding: '16px',
-    marginBottom: '16px',
-    boxShadow:
-      '-4.2px -4.2px 8.6px rgba(0, 0, 0, 0.066)'+
-      '16px 16px 28.8px rgba(0, 0, 0, 0.094)'+
-      '110px 110px 129px rgba(0, 0, 0, 0.16)',
-    width: '50%',
-  };
+
   return (
-    <div style={{ display:'inline-grid', flexDirection:'column'}}>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <Card style={{ width: 400, background: 'white', borderRadius: 10, marginBottom: 16 }}>
+        <h2>Enter Your Meal</h2>
+        <label>
+          Day:
+          <select
+            value={inputMeal.day}
+            onChange={(e) => handleInputMealChange('day', e.target.value)}
+          >
+            {meals.map((meal, index) => (
+              <option key={index} value={meal.day}>
+                {meal.day}
+              </option>
+            ))}
+          </select>
+        </label><br />
+        <label>
+          Breakfast:
+          <input
+            type="text"
+            value={inputMeal.breakfast}
+            onChange={(e) => handleInputMealChange('breakfast', e.target.value)}
+          />
+        </label><br />
+        <label>
+          Lunch:
+          <input
+            type="text"
+            value={inputMeal.lunch}
+            onChange={(e) => handleInputMealChange('lunch', e.target.value)}
+          />
+        </label><br />
+        <label>
+          Dinner:
+          <input
+            type="text"
+            value={inputMeal.dinner}
+            onChange={(e) => handleInputMealChange('dinner', e.target.value)}
+          />
+        </label><br />
+        <button onClick={handleAddMeal}>Save Meal</button>
+      </Card>
+
       {meals.map((meal, index) => (
-        // <Card className='card' key={index} style={{ padding: '16px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
-                <Card className='card' key={index} style={cardStyle}>
+        <Card key={index} style={{ width: 400, background: 'white', borderRadius: 10, marginBottom: 16 }}>
           <h2>{meal.day}</h2>
-          <label>
-            Breakfast:
-            <input
-              type="text"
-              value={meal.breakfast}
-              onChange={(e) => handleMealChange(index, 'breakfast', e.target.value)}
-            />
-          </label>
-          <label>
-            Lunch:
-            <input
-              type="text"
-              value={meal.lunch}
-              onChange={(e) => handleMealChange(index, 'lunch', e.target.value)}
-            />
-          </label>
-          <label>
-            Dinner:
-            <input
-              type="text"
-              value={meal.dinner}
-              onChange={(e) => handleMealChange(index, 'dinner', e.target.value)}
-            />
-            <button onClick={() => handleRecipeClick(index)}>Get Recipe</button>
-          </label>
-          {meal.detailedRecipe && (
-            <div>
-              <h3>Recipe Details</h3>
-              <p>{meal.detailedRecipe}</p>
-            </div>
-          )}
+          <p>Breakfast: {meal.breakfast}</p>
+          <p>Lunch: {meal.lunch}</p>
+          <p>Dinner: {meal.dinner}</p>
+          <p>Calories: {meal.calories}</p>
+          <button onClick={() => calculateCalories(meal)}>Calculate Calories</button>
         </Card>
       ))}
+
+      <Card style={{ width: 400, background: 'white', borderRadius: 10, marginBottom: 16 }}>
+        <button onClick={handleResetMeals}>Reset Meals</button>
+      </Card>
+
+      <Card className="mx-auto max-w-xs">
+        <Title>Calories</Title>
+          <DonutChart
+            className="mt-6"
+            data={calories}
+            category="sales"
+            index="name"
+            valueFormatter={valueFormatter}
+            colors={["blue-900", "blue-800", "blue-700", "blue-600", "blue-500", "blue-400"]}
+          />
+      </Card>
     </div>
   );
 };
 
 export default MealChart;
-
-
-
-
-
-
-
-
-
-
-
