@@ -1,5 +1,3 @@
-// pages/scanner.tsx
-
 import React, { useRef, useState } from 'react';
 import Webcam from 'react-webcam';
 
@@ -39,22 +37,28 @@ const Scanner: React.FC = () => {
   };
 
   return (
-    <div style={{display:'flex' , justifyContent:'center', alignItems:'center'}}>
+    <div className="flex flex-col items-center">
+      {error && <p className="text-red-500 my-4">{error}</p>}
       
-      {error && <p style={{ color: 'red' }}>{error}</p>}
       <Webcam
         audio={false}
         ref={webcamRef}
         screenshotFormat="image/jpeg"
         width={640}
         height={480}
+        className="my-4"
       />
-      <button onClick={captureImage} className='border-2 rounded-md border-black '>Capture Image</button>
-      <input type="file" accept="image/*" onChange={handleFileUpload} />
+      
+      <button onClick={captureImage} className='border-2 rounded-md border-black my-2 px-4 py-2'>
+        Capture Image
+      </button>
+      
+      <input type="file" accept="image/*" onChange={handleFileUpload} className="my-2" />
+      
       {uploadedImage && (
-        <div>
-          <h2>Uploaded Image</h2>
-          <img src={uploadedImage} alt="Uploaded" />
+        <div className="my-4">
+          <h2 className="text-xl font-semibold">Uploaded Image</h2>
+          <img src={uploadedImage} alt="Uploaded" className="mt-2" />
         </div>
       )}
     </div>

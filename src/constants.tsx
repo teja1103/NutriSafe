@@ -17,6 +17,7 @@ export const SIDENAV_ITEMS: SideNavItems[] =[
 
             {title:"Recipe maker", path:"/products/recipe-maker"},
             {title:"Fake food detector", path:"/products/Image-scanner"},
+            {title:"Meal planner", path:"/products/meal-chart"},
         ],
     },
     {

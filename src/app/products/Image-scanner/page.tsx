@@ -1,23 +1,18 @@
 "use client"
 import { useEffect } from 'react';
-//import ImageScanner from '../../../components/component/ImageScanner';
-import Scanner from '../../../components/component/ImageScanner';
-const GraphicDesignPage = () => {
-  // Use useEffect to run code only on the client side
+import Scanner from '@/components/component/Scanner';
+
+const ImageScanner = () => {
   useEffect(() => {
     // Your code here
   }, []);
 
   return (
-    <>
-      <span className="font-bold text-4xl">Image scanner</span>
-
-      {/* Render the ImageScanner component */}
+    <div className="container mx-auto p-4">
+      <h1 className="font-bold text-4xl text-center my-4">Image Scanner</h1>
       <Scanner />
-
-      {/* You can add other elements or components here */}
-    </>
+    </div>
   );
 };
 
-export default GraphicDesignPage;
+export default ImageScanner;
