@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, { useState, useEffect } from 'react';
 import { Card, DonutChart, Title } from '@tremor/react';
 import axios from 'axios';
@@ -20,12 +20,17 @@ const MealChart: React.FC = () => {
   }, [meals]);
 
   function getStoredMeals(): Meal[] {
-    const storedMeals = localStorage.getItem('meals');
-    return storedMeals ? JSON.parse(storedMeals) : getInitialMeals();
+    if (typeof window !== 'undefined') {
+      const storedMeals = localStorage.getItem('meals');
+      return storedMeals ? JSON.parse(storedMeals) : getInitialMeals();
+    }
+    return getInitialMeals();
   }
 
   function saveMealsToStorage(updatedMeals: Meal[]) {
-    localStorage.setItem('meals', JSON.stringify(updatedMeals));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('meals', JSON.stringify(updatedMeals));
+    }
   }
 
   function getInitialMeals(): Meal[] {
@@ -39,40 +44,18 @@ const MealChart: React.FC = () => {
       calories: 0,
     }));
   }
-  const calories = [
-    {
-      name: "Monday",
-      calories: 9800,
-    },
-    {
-      name: "Tuesday",
-      calories: 4567,
-    },
-    {
-      name: "Wednesday",
-      calories: 3908,
-    },
-    {
-      name: "Thursday",
-      calories: 2400,
-    },
-    {
-      name: "Friday",
-      calories: 1908,
-    },
-    {
-      name: "Saturday",
-      calories: 1398,
-    },
-    {
-      name: "Sunday",
-      calories: 1398,
-    },
-  ];
-  
-  
-  const valueFormatter = (number: number) => `$ ${new Intl.NumberFormat("us").format(number).toString()}`;
 
+  const calories = [
+    { name: "Monday", calories: 9800 },
+    { name: "Tuesday", calories: 4567 },
+    { name: "Wednesday", calories: 3908 },
+    { name: "Thursday", calories: 2400 },
+    { name: "Friday", calories: 1908 },
+    { name: "Saturday", calories: 1398 },
+    { name: "Sunday", calories: 1398 },
+  ];
+
+  const valueFormatter = (number: number) => `$ ${new Intl.NumberFormat("us").format(number).toString()}`;
 
   const handleInputMealChange = (mealType: keyof Meal, value: string) => {
     setInputMeal(prevInputMeal => ({
