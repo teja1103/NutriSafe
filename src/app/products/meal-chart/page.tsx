@@ -60,49 +60,69 @@ const MealChart: React.FC = () => {
       console.error('Error fetching detailed recipe:', error);
     }
   };
-
+  const cardStyle = {
+    border: '1px solid #ccc',
+    borderRadius: '8px',
+    padding: '16px',
+    marginBottom: '16px',
+    boxShadow:
+      '-4.2px -4.2px 8.6px rgba(0, 0, 0, 0.066)'+
+      '16px 16px 28.8px rgba(0, 0, 0, 0.094)'+
+      '110px 110px 129px rgba(0, 0, 0, 0.16)',
+    width: '50%',
+  };
   return (
-    <div style={{ maxWidth: '800px', margin: 'auto', overflowX: 'auto' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', padding: '16px' }}>
-        {meals.map((meal, index) => (
-          <Card className='card' key={index} style={{ flex: '0 0 calc(25% - 16px)', padding: '16px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
-            <h2>{meal.day}</h2>
-            <label>
-              Breakfast:
-              <input
-                type="text"
-                value={meal.breakfast}
-                onChange={(e) => handleMealChange(index, 'breakfast', e.target.value)}
-              />
-            </label>
-            <label>
-              Lunch:
-              <input
-                type="text"
-                value={meal.lunch}
-                onChange={(e) => handleMealChange(index, 'lunch', e.target.value)}
-              />
-            </label>
-            <label>
-              Dinner:
-              <input
-                type="text"
-                value={meal.dinner}
-                onChange={(e) => handleMealChange(index, 'dinner', e.target.value)}
-              />
-              <button onClick={() => handleRecipeClick(index)}>Get Recipe</button>
-            </label>
-            {meal.detailedRecipe && (
-              <div>
-                <h3>Recipe Details</h3>
-                <p>{meal.detailedRecipe}</p>
-              </div>
-            )}
-          </Card>
-        ))}
-      </div>
+    <div style={{ display:'inline-grid', flexDirection:'column'}}>
+      {meals.map((meal, index) => (
+        // <Card className='card' key={index} style={{ padding: '16px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
+                <Card className='card' key={index} style={cardStyle}>
+          <h2>{meal.day}</h2>
+          <label>
+            Breakfast:
+            <input
+              type="text"
+              value={meal.breakfast}
+              onChange={(e) => handleMealChange(index, 'breakfast', e.target.value)}
+            />
+          </label>
+          <label>
+            Lunch:
+            <input
+              type="text"
+              value={meal.lunch}
+              onChange={(e) => handleMealChange(index, 'lunch', e.target.value)}
+            />
+          </label>
+          <label>
+            Dinner:
+            <input
+              type="text"
+              value={meal.dinner}
+              onChange={(e) => handleMealChange(index, 'dinner', e.target.value)}
+            />
+            <button onClick={() => handleRecipeClick(index)}>Get Recipe</button>
+          </label>
+          {meal.detailedRecipe && (
+            <div>
+              <h3>Recipe Details</h3>
+              <p>{meal.detailedRecipe}</p>
+            </div>
+          )}
+        </Card>
+      ))}
     </div>
   );
 };
 
 export default MealChart;
+
+
+
+
+
+
+
+
+
+
+

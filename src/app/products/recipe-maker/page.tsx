@@ -1,117 +1,124 @@
+
 "use client"
-import React, { useState, useEffect } from 'react';
-import { Card } from '@tremor/react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-interface Meal {
-  day: string;
-  breakfast: string;
-  lunch: string;
-  dinner: string;
-  detailedRecipe?: string;
+interface Recipe {
+  id: number;
+  title: string;
+  ingredients: string[];
+  instructions: string;
+  extendedIngredients?: any[];
 }
 
-const MealChart: React.FC = () => {
-  const [meals, setMeals] = useState<Meal[]>(getInitialMeals());
+const RecipesPage: React.FC = () => {
+  const [ingredients, setIngredients] = useState<string>('');
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
 
-  function getInitialMeals(): Meal[] {
-    const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-
-    return daysOfWeek.map(day => ({
-      day,
-      breakfast: '',
-      lunch: '',
-      dinner: '',
-      detailedRecipe: ''
-    }));
-  }
-
-  const handleMealChange = (index: number, mealType: keyof Meal, value: string) => {
-    setMeals(prevMeals => {
-      const updatedMeals = [...prevMeals];
-      updatedMeals[index][mealType] = value;
-      return updatedMeals;
-    });
-  };
-
-  const handleRecipeClick = async (index: number) => {
-    const apiKey = process.env.NEXT_PUBLIC_REACT_APP_SPOONACULAR_API_KEY;
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
     try {
       const response = await axios.get(
-        'https://api.spoonacular.com/recipes/search',
-        {
-          params: {
-            query: meals[index].dinner,
-            apiKey,
-          },
-        }
+        `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredients}&apiKey=79bf2aee1a11496db3e9786608a1153f&limitLicense=true`
       );
 
-      if (response.data.results.length > 0) {
-        const detailedRecipe = response.data.results[0].instructions;
-        setMeals(prevMeals => {
-          const updatedMeals = [...prevMeals];
-          updatedMeals[index].detailedRecipe = detailedRecipe;
-          return updatedMeals;
-        });
-      }
+      setRecipes(response.data);
     } catch (error) {
-      console.error('Error fetching detailed recipe:', error);
+      console.error('Error fetching recipes:', error);
     }
   };
-  const cardStyle = {
-    border: '1px solid #ccc',
-    borderRadius: '8px',
-    padding: '16px',
-    marginBottom: '16px',
-    boxShadow:
-      '-4.2px -4.2px 8.6px rgba(0, 0, 0, 0.066)'+
-      '16px 16px 28.8px rgba(0, 0, 0, 0.094)'+
-      '110px 110px 129px rgba(0, 0, 0, 0.16)',
-    width: '50%',
+
+  const fetchRecipeDetails = async (recipeId: number) => {
+    try {
+      const response = await axios.get(
+        `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=79bf2aee1a11496db3e9786608a1153f`
+      );
+
+      setSelectedRecipe(response.data);
+    } catch (error) {
+      console.error('Error fetching recipe details:', error);
+    }
   };
+
   return (
-    <div style={{ display:'inline-grid', flexDirection:'column'}}>
-      {meals.map((meal, index) => (
-        // <Card className='card' key={index} style={{ padding: '16px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
-                <Card className='card' key={index} style={cardStyle}>
-          <h2>{meal.day}</h2>
-          <label>
-            Breakfast:
-            <input
-              type="text"
-              value={meal.breakfast}
-              onChange={(e) => handleMealChange(index, 'breakfast', e.target.value)}
-            />
-          </label>
-          <label>
-            Lunch:
-            <input
-              type="text"
-              value={meal.lunch}
-              onChange={(e) => handleMealChange(index, 'lunch', e.target.value)}
-            />
-          </label>
-          <label>
-            Dinner:
-            <input
-              type="text"
-              value={meal.dinner}
-              onChange={(e) => handleMealChange(index, 'dinner', e.target.value)}
-            />
-            <button onClick={() => handleRecipeClick(index)}>Get Recipe</button>
-          </label>
-          {meal.detailedRecipe && (
+    <div className="max-w-screen-md mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Recipes Page</h1>
+      <form onSubmit={handleFormSubmit} className="flex flex-col items-start">
+        <label className="mb-2">
+          Ingredients:
+          <br />
+          <input
+            type="text"
+            value={ingredients}
+            onChange={(e) => setIngredients(e.target.value)}
+            className="border-2 rounded-md p-2 w-60"
+          />
+        </label>
+        <button type="submit" className="border-2 rounded-md border-black p-2 w-40">
+          Search Recipes
+        </button>
+      </form>
+
+      {selectedRecipe ? (
+        <div className="mt-4">
+          <h2 className="text-xl font-bold mb-2">{selectedRecipe.title}</h2>
+          <p>Ingredients:</p>
+          {selectedRecipe.extendedIngredients ? (
             <div>
-              <h3>Recipe Details</h3>
-              <p>{meal.detailedRecipe}</p>
+              {selectedRecipe.extendedIngredients.map((ingredient, index) => (
+                <div
+                  key={index}
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    borderRadius: '20px',
+                    backgroundColor: '#e0e0e0',
+                    padding: '5px',
+                    margin: '5px',
+                    maxWidth: '100vw', // Restrict to viewport width
+                    overflowX: 'auto', // Enable horizontal scroll if needed
+                  }}
+                >
+                  {ingredient.original}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p>No ingredients available.</p>
+          )}
+          <p className="mt-2">Instructions:</p>
+          <p style={{ maxWidth: '100vw', overflowX: 'auto' }}>
+            {selectedRecipe.instructions}
+          </p>
+          <button onClick={() => setSelectedRecipe(null)} className="border-2 rounded-md border-black p-2 mt-4">
+            Go Back
+          </button>
+        </div>
+      ) : (
+        <div className="mt-4">
+          {recipes.length > 0 && (
+            <div>
+              <h2 className="text-xl font-bold mb-2">Recipes:</h2>
+              <ul className="flex flex-wrap">
+                {recipes.map((recipe) => (
+                  <li key={recipe.id} className="mb-2">
+                    <button
+                      className="border-2 rounded-md border-black p-2"
+                      onClick={() => fetchRecipeDetails(recipe.id)}
+                    >
+                      {recipe.title}
+                    </button>
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
-        </Card>
-      ))}
+        </div>
+      )}
     </div>
   );
 };
 
-export default MealChart;
+export default RecipesPage;
