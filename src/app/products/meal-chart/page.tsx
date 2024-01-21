@@ -173,8 +173,8 @@ const MealChart: React.FC = () => {
           <p>Breakfast: {meal.breakfast}</p>
           <p>Lunch: {meal.lunch}</p>
           <p>Dinner: {meal.dinner}</p>
-          <p>Calories: {meal.calories}</p>
-          <button onClick={() => calculateCalories(meal)}>Calculate Calories</button>
+          {/* <p>Calories: {meal.calories}</p>
+          <button onClick={() => calculateCalories(meal)}>Calculate Calories</button> */}
         </Card>
       ))}
 </div>
