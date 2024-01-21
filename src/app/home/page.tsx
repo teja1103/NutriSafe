@@ -55,6 +55,7 @@ const Home: React.FC = () => {
       '16px 16px 28.8px rgba(0, 0, 0, 0.094)'+
       '110px 110px 129px rgba(0, 0, 0, 0.16)',
     width: '50%',
+    background: '#CFEDEE',
   };
   
 

@@ -32,7 +32,7 @@ export default function RootLayout({
         <link rel="icon" href="..\logo.png" />
       </Head>
       <html lang="en">
-        <body className={`bg-white${inter.className}`}>
+      <body className={`${inter.className}`}>
           <div className="flex">
               <SideNav />
               <main className="flex-1">

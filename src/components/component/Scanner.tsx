@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import Webcam from 'react-webcam';
-
+import Image from 'next/image';
 const Scanner: React.FC = () => {
   const webcamRef = useRef<any>(null);
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
@@ -49,16 +49,16 @@ const Scanner: React.FC = () => {
         className="my-4"
       />
       
-      <button onClick={captureImage} className='border-2 rounded-md border-black my-2 px-4 py-2'>
+      <button onClick={captureImage} className='border-2 rounded-md border-black my-2 px-4 py-2 hover:bg-s-green'>
         Capture Image
       </button>
       
-      <input type="file" accept="image/*" onChange={handleFileUpload} className="my-2" />
+      <input type="file" accept="image/*" onChange={handleFileUpload} className="my-2 " />
       
       {uploadedImage && (
         <div className="my-4">
           <h2 className="text-xl font-semibold">Uploaded Image</h2>
-          <img src={uploadedImage} alt="Uploaded" className="mt-2" />
+          <Image src={uploadedImage} alt='Uploaded' width={640} height={480}/>
         </div>
       )}
     </div>

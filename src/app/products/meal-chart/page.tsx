@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import { Card, DonutChart, Title } from '@tremor/react';
+import { Card, Title } from '@tremor/react';
 import axios from 'axios';
 
 interface Meal {
@@ -44,18 +44,6 @@ const MealChart: React.FC = () => {
       calories: 0,
     }));
   }
-
-  const calories = [
-    { name: "Monday", calories: 9800 },
-    { name: "Tuesday", calories: 4567 },
-    { name: "Wednesday", calories: 3908 },
-    { name: "Thursday", calories: 2400 },
-    { name: "Friday", calories: 1908 },
-    { name: "Saturday", calories: 1398 },
-    { name: "Sunday", calories: 1398 },
-  ];
-
-  const valueFormatter = (number: number) => `$ ${new Intl.NumberFormat("us").format(number).toString()}`;
 
   const handleInputMealChange = (mealType: keyof Meal, value: string) => {
     setInputMeal(prevInputMeal => ({
@@ -112,15 +100,27 @@ const MealChart: React.FC = () => {
     }
   };
 
+  const inputStyle = {
+    border: '1px solid rgba(0, 0, 0, 0.42)',
+    borderRadius: '5px',
+    padding: '12px',
+    width: '100%',
+    color: '#0b1623',
+    fontSize: '14px',
+    fontWeight: 500,
+  };
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <Card style={{ width: 400, background: 'white', borderRadius: 10, marginBottom: 16 }}>
+      <Card className='bg-g-blue' style={{ width: 400, borderRadius: 10, marginBottom: 16 }}>
         <h2>Enter Your Meal</h2>
         <label>
           Day:
           <select
+          className='bg-i-blue'
             value={inputMeal.day}
             onChange={(e) => handleInputMealChange('day', e.target.value)}
+            style={inputStyle}
           >
             {meals.map((meal, index) => (
               <option key={index} value={meal.day}>
@@ -132,32 +132,43 @@ const MealChart: React.FC = () => {
         <label>
           Breakfast:
           <input
+                    className='bg-i-blue'
             type="text"
             value={inputMeal.breakfast}
             onChange={(e) => handleInputMealChange('breakfast', e.target.value)}
+            style={inputStyle}
           />
         </label><br />
         <label>
           Lunch:
           <input
+                    className='bg-i-blue'
             type="text"
             value={inputMeal.lunch}
             onChange={(e) => handleInputMealChange('lunch', e.target.value)}
+            style={inputStyle}
           />
         </label><br />
         <label>
           Dinner:
           <input
+                    className='bg-i-blue'
             type="text"
             value={inputMeal.dinner}
             onChange={(e) => handleInputMealChange('dinner', e.target.value)}
+            style={inputStyle}
           />
-        </label><br />
-        <button onClick={handleAddMeal}>Save Meal</button>
-      </Card>
+        </label><br /><br />
+        <button className="hover:bg-h-blue hover:shadow border-2 border-solid hover:border-h-blue rounded-lg" onClick={handleAddMeal}>
+  Save Meal
+</button>
 
+      </Card>
+      <div style={{ display: 'flex', flexDirection: 'column', justifyContent:'space-between', flexFlow:'wrap' }}>
+    
       {meals.map((meal, index) => (
-        <Card key={index} style={{ width: 400, background: 'white', borderRadius: 10, marginBottom: 16 }}>
+        
+        <Card key={index} className='bg-g-blue' style={{ width: 400, borderRadius: 10, marginBottom: 16 }}>
           <h2>{meal.day}</h2>
           <p>Breakfast: {meal.breakfast}</p>
           <p>Lunch: {meal.lunch}</p>
@@ -166,21 +177,9 @@ const MealChart: React.FC = () => {
           <button onClick={() => calculateCalories(meal)}>Calculate Calories</button>
         </Card>
       ))}
-
-      <Card style={{ width: 400, background: 'white', borderRadius: 10, marginBottom: 16 }}>
-        <button onClick={handleResetMeals}>Reset Meals</button>
-      </Card>
-
-      <Card className="mx-auto max-w-xs">
-        <Title>Calories</Title>
-          <DonutChart
-            className="mt-6"
-            data={calories}
-            category="sales"
-            index="name"
-            valueFormatter={valueFormatter}
-            colors={["blue-900", "blue-800", "blue-700", "blue-600", "blue-500", "blue-400"]}
-          />
+</div>
+      <Card style={{ borderRadius: 10, marginBottom: 16,   }}>
+        <button className='bg-g-blue w-40 h-10 hover:bg-h-blue hover:shadow-lg border-2 border-solid border-h-blue rounded-lg' onClick={handleResetMeals} >Reset Meals</button>
       </Card>
     </div>
   );

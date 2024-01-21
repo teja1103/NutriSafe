@@ -1,4 +1,6 @@
-import type { Config } from 'tailwindcss'
+// tailwind.config.ts
+import type { Config } from 'tailwindcss';
+import colors  from 'tailwindcss/colors';
 
 const config: Config = {
   content: [
@@ -8,13 +10,48 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      colors: {
+        's-green': '#98b192',
+        'b-green':'#b7d1b1',
+        'g-blue':'#cfedee',
+        'h-blue':'#b4cecf',
+        'g-grey':'#677777',
+        'i-blue':'#ecf8f8',
+        'm-pink':'#e2f4f5',
+        't-black':'#262020',
+        tremor: {
+          brand: {
+            faint: colors.blue[50],
+            muted: colors.blue[200],
+            subtle: colors.blue[400],
+            DEFAULT: colors.blue[500],
+            emphasis: colors.blue[700],
+            inverted: colors.white,
+          },
+          background: {
+            muted: colors.gray[50],
+            subtle: colors.gray[100],
+            DEFAULT: colors.white,
+            emphasis: colors.gray[700],
+          },
+          border: {
+            DEFAULT: colors.gray[200],
+          },
+          ring: {
+            DEFAULT: colors.gray[200],
+          },
+          content: {
+            subtle: colors.gray[400],
+            DEFAULT: colors.gray[500],
+            emphasis: colors.gray[700],
+            strong: colors.gray[900],
+            inverted: colors.white,
+          },
+        },
       },
     },
   },
   plugins: [],
-}
-export default config
+};
+
+export default config;

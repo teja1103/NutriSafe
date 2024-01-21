@@ -9,7 +9,7 @@ const ImageScanner = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="font-bold text-4xl text-center my-4">Image Scanner</h1>
+      <h1 className="font-bold text-4xl text-center my-4">Scanner</h1>
       <Scanner />
     </div>
   );

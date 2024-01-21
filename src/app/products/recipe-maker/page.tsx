@@ -56,25 +56,28 @@ const RecipesPage: React.FC = () => {
             className="border-2 rounded-md p-2 w-60"
           />
         </label>
-        <button type="submit" className="border-2 rounded-md border-black p-2 w-40">
-          Search Recipes
+        <button
+          type="submit"
+          className="border-2 rounded-md border-black p-2 w-40 hover:bg-s-green"
+        >  Search Recipes
         </button>
       </form>
 
       {selectedRecipe ? (
         <div className="mt-4">
-          <h2 className="text-xl font-bold mb-2">{selectedRecipe.title}</h2>
+          <h2 className="text-xl font-bold mb-2 ">{selectedRecipe.title}</h2>
           <p>Ingredients:</p>
           {selectedRecipe.extendedIngredients ? (
             <div>
               {selectedRecipe.extendedIngredients.map((ingredient, index) => (
                 <div
+                className='hover:bg-s-green'
                   key={index}
                   style={{
                     display: 'flex',
                     flexDirection: 'column',
                     borderRadius: '20px',
-                    backgroundColor: '#e0e0e0',
+                    border:'px',
                     padding: '5px',
                     margin: '5px',
                     maxWidth: '100vw', // Restrict to viewport width
@@ -92,7 +95,7 @@ const RecipesPage: React.FC = () => {
           <p style={{ maxWidth: '100vw', overflowX: 'auto' }}>
             {selectedRecipe.instructions}
           </p>
-          <button onClick={() => setSelectedRecipe(null)} className="border-2 rounded-md border-black p-2 mt-4">
+          <button onClick={() => setSelectedRecipe(null)} className="border-2 rounded-md border-black p-2 mt-4 hover:bg-s-green">
             Go Back
           </button>
         </div>
@@ -105,7 +108,7 @@ const RecipesPage: React.FC = () => {
                 {recipes.map((recipe) => (
                   <li key={recipe.id} className="mb-2">
                     <button
-                      className="border-2 rounded-md border-black p-2"
+                      className="border-2 rounded-md border-black p-2 hover:bg-s-green"
                       onClick={() => fetchRecipeDetails(recipe.id)}
                     >
                       {recipe.title}
