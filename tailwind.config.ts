@@ -19,6 +19,7 @@ const config: Config = {
         'i-blue':'#ecf8f8',
         'm-pink':'#e2f4f5',
         't-black':'#262020',
+        't-cream':'#81977c',
         tremor: {
           brand: {
             faint: colors.blue[50],

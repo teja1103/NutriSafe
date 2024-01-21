@@ -44,7 +44,7 @@ const RecipesPage: React.FC = () => {
 
   return (
     <div className="max-w-screen-md mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Recipes Page</h1>
+      <h1 className="text-2xl font-bold mb-4">Recipe Maker</h1>
       <form onSubmit={handleFormSubmit} className="flex flex-col items-start">
         <label className="mb-2">
           Ingredients:
