@@ -78,7 +78,7 @@ const Home: React.FC = () => {
 
   return (
     <div style={{display:'flex', flexDirection:'column'}}>
-      <div className="flex flex-col md:flex-row flex-wrap md:space-x-4 space-x-4">
+      <div className="flex-2 flex flex-row md:flex-row flex-wrap md:space-x-4 space-x-4">
   <Card className='card hover:shadow-lg' style={cardStyle1}>
     <h2>Calories consumed</h2>
     <p>550 calories</p>

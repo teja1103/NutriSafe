@@ -10,6 +10,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      flex:{
+        '2':'1 0 0'
+      },
       colors: {
         's-green': '#98b192',
         'b-green':'#b7d1b1',
