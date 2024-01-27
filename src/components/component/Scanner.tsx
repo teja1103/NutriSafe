@@ -49,7 +49,7 @@ const Scanner: React.FC = () => {
         className="my-4"
       />
       
-      <button onClick={captureImage} className='border-2 rounded-md border-black my-2 px-4 py-2 hover:bg-s-green'>
+      <button onClick={captureImage} className='border-2 rounded-md border-black my-2 px-4 py-2 hover:bg-e-d-brown'>
         Capture Image
       </button>
       

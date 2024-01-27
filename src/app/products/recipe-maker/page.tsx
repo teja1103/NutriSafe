@@ -58,7 +58,7 @@ const RecipesPage: React.FC = () => {
         </label>
         <button
           type="submit"
-          className="border-2 rounded-md border-black p-2 w-40 hover:bg-s-green"
+          className="border-2 rounded-md border-black p-2 w-40 hover:bg-e-d-brown"
         >  Search Recipes
         </button>
       </form>
@@ -71,7 +71,7 @@ const RecipesPage: React.FC = () => {
             <div>
               {selectedRecipe.extendedIngredients.map((ingredient, index) => (
                 <div
-                className='hover:bg-s-green'
+                className='hover:bg-e-d-brown'
                   key={index}
                   style={{
                     display: 'flex',
@@ -95,7 +95,7 @@ const RecipesPage: React.FC = () => {
           <p style={{ maxWidth: '100vw', overflowX: 'auto' }}>
             {selectedRecipe.instructions}
           </p>
-          <button onClick={() => setSelectedRecipe(null)} className="border-2 rounded-md border-black p-2 mt-4 hover:bg-s-green">
+          <button onClick={() => setSelectedRecipe(null)} className="border-2 rounded-md border-black p-2 mt-4 hover:bg-e-d-brown">
             Go Back
           </button>
         </div>
@@ -108,7 +108,7 @@ const RecipesPage: React.FC = () => {
                 {recipes.map((recipe) => (
                   <li key={recipe.id} className="mb-2">
                     <button
-                      className="border-2 rounded-md border-black p-2 hover:bg-s-green"
+                      className="border-2 rounded-md border-black p-2 hover:bg-e-d-brown"
                       onClick={() => fetchRecipeDetails(recipe.id)}
                     >
                       {recipe.title}

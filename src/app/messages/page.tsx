@@ -37,9 +37,9 @@ const CommunityChat: React.FC = () => {
     <div>
       
       <h1 style={{display:'flex',alignItems:'center',flexDirection:'column'}}> <b>Community Chat</b></h1>
-      <div className='bg-g-blue rounded-2xl' style={{ border: '1px solid #ccc', padding: '10px', minHeight: '500px', overflowY: 'auto' }}>
+      <div className='bg-c-violet rounded-2xl' style={{ border: '1px solid #ccc', padding: '10px', minHeight: '500px', overflowY: 'auto' }}>
         {messages.map((msg) => (
-          <div className='bg-m-pink rounded-md text-t-black' key={msg.id}>
+          <div className='bg-f-pen rounded-sm text-f-t-pen border-white' key={msg.id}>
             <strong>{msg.user}:</strong> {msg.text}
           </div>
         ))}
@@ -50,7 +50,7 @@ const CommunityChat: React.FC = () => {
     <input className='rounded-md border-2 border-black' type="text" value={message} onChange={handleMessageChange} />
   </label>
   <br />
-  <Button className='border-2 rounded-md border-black p-2 hover:bg-s-green' type="submit" size="md" variant="primary" style={{ marginTop: '10px' }}>
+  <Button className='border-2 rounded-md border-black p-2 hover:bg-e-d-brown' type="submit" size="md" variant="primary" style={{ marginTop: '10px' }}>
     Send
   </Button>
 </form>
