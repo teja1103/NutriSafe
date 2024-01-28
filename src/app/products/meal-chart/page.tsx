@@ -112,8 +112,8 @@ const MealChart: React.FC = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <h1 className="text-2xl text-center font-bold mb-4">Recipe Maker</h1>
-      <Card className='bg-g-blue' style={{ width: 350, borderRadius: 10, marginBottom: 16 }}>
+            <h1 className="text-2xl text-center font-bold mb-4">Meal Planner</h1>
+      <Card className='bg-g-blue hover:shadow-lg' style={{ width: 350, borderRadius: 10, marginBottom: 16 }}>
         <h2>Enter Your Meal</h2>
         <label>
           Day:
@@ -169,13 +169,11 @@ const MealChart: React.FC = () => {
     
       {meals.map((meal, index) => (
         
-        <Card key={index} className='bg-g-blue space-x-1 space-y-1 justify-betweeen' style={{ width: 400, borderRadius: 10, marginBottom: 16 }}>
+        <Card key={index} className='bg-g-blue hover:shadow-lg space-x-1 space-y-1 justify-betweeen' style={{ width: 400, borderRadius: 10, marginBottom: 16 }}>
           <h2>{meal.day}</h2>
           <p>Breakfast: {meal.breakfast}</p>
           <p>Lunch: {meal.lunch}</p>
           <p>Dinner: {meal.dinner}</p>
-          {/* <p>Calories: {meal.calories}</p>
-          <button onClick={() => calculateCalories(meal)}>Calculate Calories</button> */}
         </Card>
       ))}
 </div>
