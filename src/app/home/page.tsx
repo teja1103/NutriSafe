@@ -1,7 +1,10 @@
-"use client"
 import React from 'react';
 import { Card } from '@tremor/react';
-//import './page.css'
+
+interface CardData {
+  title: string;
+  value: string;
+}
 
 const Home: React.FC = () => {
   const meals = [
@@ -51,64 +54,33 @@ const Home: React.FC = () => {
     // Add more days and meals as needed
   ];
 
-  const cardStyle = {
-    border: '1px solid #ccc',
-    borderRadius: '8px',
-    padding: '16px',
-    marginBottom: '16px',
-    boxShadow:
-      '-4.2px -4.2px 8.6px rgba(0, 0, 0, 0.066)'+
-      '16px 16px 28.8px rgba(0, 0, 0, 0.094)'+
-      '110px 110px 129px rgba(0, 0, 0, 0.16)',
-    width: '50%',
-    background: '#CFEDEE',
-  };
-  const cardStyle1 = {
-    
-    border: '1px solid #ccc',
-    borderRadius: '8px',
-    padding: '16px',
-    marginBottom: '16px',
-    boxShadow:
-      '-4.2px -4.2px 8.6px rgba(0, 0, 0, 0.066)'+
-      '16px 16px 28.8px rgba(0, 0, 0, 0.094)'+
-      '110px 110px 129px rgba(0, 0, 0, 0.16)',
-    background: '#CFEDEE',
-    width:'40%',
-  };
+  const cardData: CardData[] = [
+    { title: 'Calories consumed', value: '550 calories' },
+    { title: 'Average calories consumed', value: '550 calories' },
+    { title: 'Protein intake', value: '50g' },
+    { title: 'Average protein intake', value: '30g' },
+  ];
 
   return (
-    <div style={{display:'flex', flexDirection:'column'}}>
-      <div className="flex flex-wrap felx-row md:flex-row flex-wrap md:space-x-4 space-x-4">
-  <Card className='card hover:shadow-lg' style={cardStyle1}>
-    <h2>Calories consumed</h2>
-    <p>550 calories</p>
-  </Card>
-  <Card className='card hover:shadow-lg' style={cardStyle1}>
-    <h2>Average calories consumed</h2>
-    <p>550 calories</p>
-  </Card>
-  <Card className='card hover:shadow-lg' style={cardStyle1}>
-    <h2>Protein intake</h2>
-    <p>50g</p>
-  </Card>
-  <Card className='card hover:shadow-lg' style={cardStyle1}>
-    <h2>Average protein intake</h2>
-    <p>30g</p>
-  </Card>
-</div>
-
-
-        <div style={{display:'flex', flexDirection:'row', flexWrap:'wrap'}}>
-      {meals.map((meal, index) => (
-        
-        <Card className='card hover:shadow-lg' key={index} style={cardStyle}>
-          <h2>{meal.day}</h2>
-          <p>Breakfast: {meal.breakfast}</p>
-          <p>Lunch: {meal.lunch}</p>
-          <p>Dinner: {meal.dinner}</p>
-        </Card>
-      ))}
+    <div className="flex flex-col">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {cardData.map((data, index) => (
+          <Card className='card bg-white rounded-xl hover:shadow-xl' key={index}>
+            <h2>{data.title}</h2>
+            <p>{data.value}</p>
+          </Card>
+        ))}
+      </div>
+          <br />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {meals.map((meal, index) => (
+          <Card className='card bg-white rounded-xl hover:shadow-xl' key={index}>
+            <h2>{meal.day}</h2>
+            <p>Breakfast: {meal.breakfast}</p>
+            <p>Lunch: {meal.lunch}</p>
+            <p>Dinner: {meal.dinner}</p>
+          </Card>
+        ))}
       </div>
     </div>
   );
