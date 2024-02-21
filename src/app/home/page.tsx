@@ -64,6 +64,7 @@ const Home: React.FC = () => {
     background: '#CFEDEE',
   };
   const cardStyle1 = {
+    
     border: '1px solid #ccc',
     borderRadius: '8px',
     padding: '16px',
@@ -73,12 +74,12 @@ const Home: React.FC = () => {
       '16px 16px 28.8px rgba(0, 0, 0, 0.094)'+
       '110px 110px 129px rgba(0, 0, 0, 0.16)',
     background: '#CFEDEE',
-    width:'20%',
+    width:'40%',
   };
 
   return (
     <div style={{display:'flex', flexDirection:'column'}}>
-      <div className="flex-2 flex flex-row md:flex-row flex-wrap md:space-x-4 space-x-4">
+      <div className="flex flex-wrap felx-row md:flex-row flex-wrap md:space-x-4 space-x-4">
   <Card className='card hover:shadow-lg' style={cardStyle1}>
     <h2>Calories consumed</h2>
     <p>550 calories</p>
