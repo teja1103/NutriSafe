@@ -6,52 +6,65 @@ interface CardData {
   value: string;
 }
 
+interface MealData {
+  day: string;
+  breakfast: string;
+  lunch: string;
+  dinner: string;
+  image: string;
+}
+
 const Home: React.FC = () => {
-  const meals = [
+  const meals: MealData[] = [
     {
       day: 'Monday',
-      breakfast: 'Scrambled Eggs',
+      breakfast: 'Oats Upma',
       lunch: 'Grilled Chicken Salad',
       dinner: 'Vegetarian Pasta',
+      image: 'monday.jpg',
     },
     {
       day: 'Tuesday',
-      breakfast: 'Oatmeal with Fruits',
+      breakfast: 'Idly',
       lunch: 'Quinoa Bowl',
       dinner: 'Salmon with Roasted Vegetables',
+      image: 'tuesday.jpg',
     },
-        {
+    {
       day: 'Wednesday',
-      breakfast: 'Idly ',
+      breakfast: 'Fruit bowl',
       lunch: 'Caesar salad',
       dinner: 'Vegetarian rice bowl',
+      image: 'wednesday.jpg',
     },
     {
       day: 'Thursday',
-      breakfast: 'Avacado toast',
+      breakfast: 'Detox Smoothie',
       lunch: 'Grilled fish',
-      dinner: 'Spagetti with meat balls',
+      dinner: 'Spaghetti with meatballs',
+      image: 'thursday.jpg',
     },
     {
       day: 'Friday',
-      breakfast: 'Muesli with almond milk',
+      breakfast: 'Vegan Buddha bowl',
       lunch: 'Brown rice with lentil soup',
       dinner: 'Sushi',
+      image: 'friday.jpg',
     },
     {
       day: 'Saturday',
-      breakfast: 'Bread and beans',
+      breakfast: 'Cus Cus Salad',
       lunch: 'Stir fried vegetables with paneer',
       dinner: 'Lasagne',
+      image: 'saturday.jpg',
     },
     {
       day: 'Sunday',
-      breakfast: 'Idly ',
+      breakfast: 'Quinoa Salad',
       lunch: 'Caesar salad',
       dinner: 'Vegetarian rice bowl',
+      image: 'sunday.jpg',
     },
-
-    // Add more days and meals as needed
   ];
 
   const cardData: CardData[] = [
@@ -62,24 +75,41 @@ const Home: React.FC = () => {
   ];
 
   return (
-    <div className=" flex flex-col">
+    <div className="flex flex-col">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {cardData.map((data, index) => (
-          <Card className='card bg-white rounded-xl hover:shadow-xl' key={index}>
+          <Card
+            className="bg-opacity-75 bg-white bg-blur border border-white border-opacity-10 rounded-lg shadow-lg  text-white"
+            key={index}
+          >
             <h2>{data.title}</h2>
             <p>{data.value}</p>
           </Card>
         ))}
       </div>
-          <br />
+      <br />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {meals.map((meal, index) => (
-          <Card className='card bg-white rounded-xl hover:shadow-xl' key={index}>
-            <h2>{meal.day}</h2>
-            <p>Breakfast: {meal.breakfast}</p>
-            <p>Lunch: {meal.lunch}</p>
-            <p>Dinner: {meal.dinner}</p>
-          </Card>
+          <div
+            className="bg-opacity-75 bg-white bg-blur border border-white border-opacity-10 rounded-lg shadow-lg flex justify-evenly text-white"
+            key={index}
+          >
+            <div className="p-4">
+              <h2>{meal.day}</h2>
+              <p>Breakfast: {meal.breakfast}</p>
+              <p>Lunch: {meal.lunch}</p>
+              <p>Dinner: {meal.dinner}</p>
+            </div>
+            <div className="relative flex-shrink-0">
+              <div className="rounded-full overflow-hidden h-32 w-32">
+                <img
+                  src={meal.image}
+                  alt={meal.day}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
         ))}
       </div>
     </div>
