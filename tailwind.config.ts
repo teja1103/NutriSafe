@@ -10,27 +10,19 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      blur: {
+        xs: '2px',
+      },
       flex:{
         '2':'1 0 0'
       },
       colors: {
-        's-green': '#98b192',
-        'b-green':'#b7d1b1',
-        'g-blue':'#cfedee',
-        'h-blue':'#b4cecf',
-        'g-grey':'#677777',
-        'i-blue':'#ecf8f8',
-        'm-pink':'#e2f4f5',
-        't-black':'#262020',
-        't-cream':'#81977c',
-        'c-violet':'#a99e97',
-        'f-cream':'#f5f5f7',
-        'a-violet':'#a482c8',
-        'e-cream':'#e5d4d8',
-        'e-brown':'#e4d5cc',
-        'e-d-brown':'#caac9a',
-        'f-pen':'#feede3',
-        'f-t-pen':'#67605c',
+        's-black':'#27355A',
+        'e-black':'#0F182C',
+        'c-white':'#E8E1AD',
+        's-yellow':'#F8E7DE',
+        'f-yellow':'#E8E1AD',
+        
          
         tremor: {
           brand: {
