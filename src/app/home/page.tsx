@@ -47,22 +47,22 @@ const Home: React.FC = () => {
     {
       day: 'Friday',
       breakfast: 'Vegan Buddha bowl',
-      lunch: 'Brown rice with lentil soup',
+      lunch: 'Brown Rice with Lentil Soup',
       dinner: 'Sushi',
       image: 'friday.jpg',
     },
     {
       day: 'Saturday',
       breakfast: 'Cus Cus Salad',
-      lunch: 'Stir fried vegetables with paneer',
+      lunch: 'Stir Fried Vegetables with Paneer',
       dinner: 'Lasagne',
       image: 'saturday.jpg',
     },
     {
       day: 'Sunday',
       breakfast: 'Quinoa Salad',
-      lunch: 'Caesar salad',
-      dinner: 'Vegetarian rice bowl',
+      lunch: 'Caesar Salad',
+      dinner: 'Vegetarian Rice Bowl',
       image: 'sunday.jpg',
     },
   ];
