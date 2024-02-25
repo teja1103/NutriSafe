@@ -18,8 +18,8 @@ const Header = () => {
       className={cn(
         `sticky inset-x-0 top-0 z-30 w-full transition-all border-b border-black`,
         {
-          'border-b  bg-gradient-to-r from-slate-700 to-slate-900/75 backdrop-blur-lg': scrolled,
-          'border-b  bg-gradient-to-r from-slate-700 to-slate-900': selectedLayout,
+          'border-b  bg-gradient-to-r from-slate-900 to-slate-700/75 backdrop-blur-lg': scrolled,
+          'border-b  bg-gradient-to-r from-slate-900 to-slate-700': selectedLayout,
         },
       )}
     >

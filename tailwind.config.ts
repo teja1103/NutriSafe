@@ -20,7 +20,7 @@ const config: Config = {
         's-black':'#27355A',
         'e-black':'#0F182C',
         'c-white':'#E8E1AD',
-        'se-black':'#ACC8E5',
+        'se-black':'#1C3957',
         's-yellow':'#F8E7DE',
         'f-yellow':'#E8E1AD',
         

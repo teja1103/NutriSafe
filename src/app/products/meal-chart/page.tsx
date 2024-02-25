@@ -112,10 +112,10 @@ const MealChart: React.FC = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <h1 className="text-2xl text-center font-bold mb-4">Meal Planner</h1>
-      <Card className='bg-g-blue hover:shadow-lg' style={{ width: 350, borderRadius: 10, marginBottom: 16 }}>
-        <h2>Enter Your Meal</h2>
-        <label>
+            <h1 className="text-2xl text-center font-bold mb-4 text-c-white">Meal Planner</h1>
+      <Card className='bg-opacity-75  bg-blur border border-white border-opacity-10 bg-g-blue hover:shadow-sm hover:shadow-white' style={{ width: 350, borderRadius: 10, marginBottom: 16 }}>
+        <h2 className='text-c-white'>Enter Your Meal</h2>
+        <label className='text-c-white'>
           Day:
           <select
           className='bg-i-blue'
@@ -130,7 +130,7 @@ const MealChart: React.FC = () => {
             ))}
           </select>
         </label><br />
-        <label>
+        <label className='text-c-white'>
           Breakfast:
           <input
                     className='bg-i-blue'
@@ -140,7 +140,7 @@ const MealChart: React.FC = () => {
             style={inputStyle}
           />
         </label><br />
-        <label>
+        <label className='text-c-white'>
           Lunch:
           <input
                     className='bg-i-blue'
@@ -150,7 +150,7 @@ const MealChart: React.FC = () => {
             style={inputStyle}
           />
         </label><br />
-        <label>
+        <label className='text-c-white'>
           Dinner:
           <input
                     className='bg-i-blue'
@@ -160,7 +160,7 @@ const MealChart: React.FC = () => {
             style={inputStyle}
           />
         </label><br /><br />
-        <button className="hover:bg-h-blue hover:shadow border-2 border-solid hover:border-h-blue rounded-lg" onClick={handleAddMeal}>
+        <button className="hover:bg-b-blue hover:shadow-sm text-c-white border-2 border-solid hover:border-h-blue rounded-lg" onClick={handleAddMeal}>
   Save Meal
 </button>
 
@@ -169,7 +169,7 @@ const MealChart: React.FC = () => {
     
       {meals.map((meal, index) => (
         
-        <Card key={index} className='bg-g-blue hover:shadow-lg space-x-1 space-y-1 justify-betweeen' style={{ width: 400, borderRadius: 10, marginBottom: 16 }}>
+        <Card key={index} className='bg-opacity-75  bg-blur border border-white border-opacity-10 hover:shadow-sm hover:shadow-white text-c-white space-x-1 space-y-1 justify-betweeen' style={{ width: 400, borderRadius: 10, marginBottom: 16 }}>
           <h2>{meal.day}</h2>
           <p>Breakfast: {meal.breakfast}</p>
           <p>Lunch: {meal.lunch}</p>
@@ -178,7 +178,7 @@ const MealChart: React.FC = () => {
       ))}
 </div>
       <Card style={{ borderRadius: 10, marginBottom: 16,   }}>
-        <button className='bg-g-blue w-40 h-10 hover:bg-h-blue hover:shadow-lg border-2 border-solid border-h-blue rounded-lg' onClick={handleResetMeals} >Reset Meals</button>
+        <button className=' w-40 h-10 text-c-white hover:shadow-sm hover:shadow-white border-2 border-solid border-f-yellow rounded-lg' onClick={handleResetMeals} >Reset Meals</button>
       </Card>
     </div>
   );

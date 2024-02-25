@@ -79,7 +79,7 @@ const Home: React.FC = () => {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {cardData.map((data, index) => (
           <Card
-            className="bg-opacity-75 bg-white bg-blur border border-white border-opacity-10 rounded-lg shadow-lg  text-white"
+            className="bg-opacity-75 bg-white bg-blur border border-white border-opacity-10 rounded-lg hover:shadow-sm hover:shadow-white  text-c-white"
             key={index}
           >
             <h2>{data.title}</h2>
@@ -91,9 +91,10 @@ const Home: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {meals.map((meal, index) => (
           <div
-            className="bg-opacity-75 bg-white bg-blur border border-white border-opacity-10 rounded-lg shadow-lg flex justify-evenly text-white"
+            className="bg-opacity-75  bg-blur border border-white border-opacity-10 rounded-lg hover:shadow-sm hover:shadow-white flex justify-evenly text-c-white"
             key={index}
           >
+            
             <div className="p-4">
               <h2>{meal.day}</h2>
               <p>Breakfast: {meal.breakfast}</p>

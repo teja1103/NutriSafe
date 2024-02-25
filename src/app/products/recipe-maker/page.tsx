@@ -44,10 +44,11 @@ const RecipesPage: React.FC = () => {
 
   return (
     <div className="max-w-screen-md mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Recipe Maker</h1>
+      <h1 className="text-xl font-bold mb-4 text-c-white">Recipe Maker</h1>
       <form onSubmit={handleFormSubmit} className="flex flex-col items-start">
-        <label className="mb-2">
-          Ingredients:
+        <label className=" mb-2">
+          <div className='text-c-white'>
+          Ingredients:</div>
           <br />
           <input
             type="text"
@@ -58,20 +59,20 @@ const RecipesPage: React.FC = () => {
         </label>
         <button
           type="submit"
-          className="border-2 rounded-md border-black p-2 w-40 hover:bg-e-d-brown"
+          className="border-2 rounded-md hover:shadow-sm hover:shadow-white text-c-white  p-2 w-40 hover:bg-e-d-brown"
         >  Search Recipes
         </button>
       </form>
 
       {selectedRecipe ? (
         <div className="mt-4">
-          <h2 className="text-xl font-bold mb-2 ">{selectedRecipe.title}</h2>
-          <p>Ingredients:</p>
+          <h2 className="text-xl font-bold mb-2 hover:shadow-sm hover:shadow-white rounded-md text-c-white ">{selectedRecipe.title}</h2>
+          <p className='text-c-white text-md'>Ingredients:</p>
           {selectedRecipe.extendedIngredients ? (
             <div>
               {selectedRecipe.extendedIngredients.map((ingredient, index) => (
                 <div
-                className='hover:bg-e-d-brown'
+                className='hover:bg-e-d-brown text-c-white hover:shadow-sm hover:shadow-white rounded-md'
                   key={index}
                   style={{
                     display: 'flex',
@@ -91,11 +92,11 @@ const RecipesPage: React.FC = () => {
           ) : (
             <p>No ingredients available.</p>
           )}
-          <p className="mt-2">Instructions:</p>
-          <p style={{ maxWidth: '100vw', overflowX: 'auto' }}>
+          <p className="mt-2 text-c-white">Instructions:</p>
+          <p className='text-c-white' style={{ maxWidth: '100vw', overflowX: 'auto' }}>
             {selectedRecipe.instructions}
           </p>
-          <button onClick={() => setSelectedRecipe(null)} className="border-2 rounded-md border-black p-2 mt-4 hover:bg-e-d-brown">
+          <button onClick={() => setSelectedRecipe(null)} className="border-2 border-white text-c-white rounded-md border-black p-2 mt-4 hover:shadow-sm hover:shadow-white">
             Go Back
           </button>
         </div>
@@ -103,12 +104,12 @@ const RecipesPage: React.FC = () => {
         <div className="mt-4">
           {recipes.length > 0 && (
             <div>
-              <h2 className="text-xl font-bold mb-2">Recipes:</h2>
-              <ul className="flex flex-wrap">
+              <h2 className="text-xl font-bold mb-2 text-c-white">Recipes:</h2>
+              <ul className="flex flex-wrap  justify-start ">
                 {recipes.map((recipe) => (
-                  <li key={recipe.id} className="mb-2">
+                  <li key={recipe.id} className="mb-2 p-2">
                     <button
-                      className="border-2 rounded-md border-black p-2 hover:bg-e-d-brown"
+                      className="border-2 hover:shadow-sm hover:shadow-white rounded border-c-white p-2 text-c-white hover:bg-e-d-brown"
                       onClick={() => fetchRecipeDetails(recipe.id)}
                     >
                       {recipe.title}

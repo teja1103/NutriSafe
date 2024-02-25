@@ -57,7 +57,7 @@ const MenuItem = ({ item }: { item: SideNavItems }) => {
             </div>
 
             <div className={`${subMenuOpen ? 'rotate-180' : ''} flex`}>
-              <Icon icon="lucide:chevron-down" width="24" height="24" />
+              <Icon className="text-c-white" icon="lucide:chevron-down" width="24" height="24" />
             </div>
           </button>
 
@@ -72,7 +72,7 @@ const MenuItem = ({ item }: { item: SideNavItems }) => {
                       subItem.path === pathname ? 'font-bold' : ''
                     }`}
                   >
-                    <span>{subItem.title}</span>
+                    <span className='text-c-white'>{subItem.title}</span>
                   </Link>
                 );
               })}

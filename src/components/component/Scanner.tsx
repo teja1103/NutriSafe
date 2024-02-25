@@ -49,14 +49,14 @@ const Scanner: React.FC = () => {
         className="my-4"
       />
       
-      <button onClick={captureImage} className='border-2 rounded-md border-black my-2 px-4 py-2 hover:bg-e-d-brown'>
+      <button onClick={captureImage} className='border-2 text-c-white rounded-md border-black my-2 px-4 py-2 hover:bg-e-d-brown'>
         Capture Image
       </button>
       
       <input type="file" accept="image/*" onChange={handleFileUpload} className="my-2 " />
       
       {uploadedImage && (
-        <div className="my-4">
+        <div className="my-4 ">
           <h2 className="text-xl font-semibold">Uploaded Image</h2>
           <Image src={uploadedImage} alt='Uploaded' width={640} height={480}/>
         </div>
