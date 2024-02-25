@@ -32,16 +32,16 @@ const Home: React.FC = () => {
     },
     {
       day: 'Wednesday',
-      breakfast: 'Fruit bowl',
-      lunch: 'Caesar salad',
-      dinner: 'Vegetarian rice bowl',
+      breakfast: 'Fruit Bowl',
+      lunch: 'Caesar Salad',
+      dinner: 'Vegetarian Rice Bowl',
       image: 'wednesday.jpg',
     },
     {
       day: 'Thursday',
       breakfast: 'Detox Smoothie',
-      lunch: 'Grilled fish',
-      dinner: 'Spaghetti with meatballs',
+      lunch: 'Grilled Fish',
+      dinner: 'Spaghetti with Meatballs',
       image: 'thursday.jpg',
     },
     {
@@ -61,17 +61,17 @@ const Home: React.FC = () => {
     {
       day: 'Sunday',
       breakfast: 'Quinoa Salad',
-      lunch: 'Caesar Salad',
+      lunch: 'Caesar salad',
       dinner: 'Vegetarian Rice Bowl',
       image: 'sunday.jpg',
     },
   ];
 
   const cardData: CardData[] = [
-    { title: 'Calories consumed', value: '550 calories' },
-    { title: 'Average calories consumed', value: '550 calories' },
-    { title: 'Protein intake', value: '50g' },
-    { title: 'Average protein intake', value: '30g' },
+    { title: 'Calories Consumed', value: '550 calories' },
+    { title: 'Average Calories Consumed', value: '550 calories' },
+    { title: 'Protein Intake', value: '50g' },
+    { title: 'Average Protein Intake', value: '30g' },
   ];
 
   return (
