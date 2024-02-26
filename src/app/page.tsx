@@ -68,8 +68,8 @@ const Home: React.FC = () => {
   ];
 
   const cardData: CardData[] = [
-    { title: 'Calories Consumed', value: '550 calories' },
-    { title: 'Average Calories Consumed', value: '550 calories' },
+    { title: 'Calories Consumed', value: '560 calories' },
+    { title: 'Average Calories Consumed', value: '545 calories' },
     { title: 'Protein Intake', value: '50g' },
     { title: 'Average Protein Intake', value: '30g' },
   ];
