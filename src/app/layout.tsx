@@ -27,11 +27,12 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <Head>
+
+      <html lang="en">
+      <head>
         {/* Add your image icon link here */}
         <link rel="icon" href="..\logo.png" />
-      </Head>
-      <html lang="en">
+      </head>
       <body className={`${inter.className}`}>
           <div className="flex">
               <SideNav />
