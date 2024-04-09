@@ -30,8 +30,8 @@ const Header = () => {
             className="flex flex-row space-x-3 md:hidden"
           >
             {/* <span className="h-7 w-7 bg-zinc-300 rounded-lg" /> */}
-            <span className="font-bold text-xl  ">
-        <Image src="/logo.png" alt="Logo" width={200} height={200} /></span>
+            <span className="font-bold text-xl ml-12   ">
+        <Image src="/logo.png" alt="Logo" width={50} height={50} /></span>
           </Link>
         </div>
 

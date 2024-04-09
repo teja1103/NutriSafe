@@ -18,8 +18,8 @@ const SideNav = () => {
           className="flex flex-row space-x-3 items-center justify-center md:justify-start md:px-6 border-b border-black h-12 w-full"
         >
           {/* <span className="h-7 w-7 bg-zinc-300 rounded-lg" /> */}
-          <span className="font-bold text-xl text-c-white hidden md:flex">        
-          <Image src="/logo.png" alt="Logo" width={550} height={550} /></span>
+          <span className="font-bold ml-14 text-xl text-c-white hidden md:flex">        
+          <Image src="/logo.png" alt="Logo" width={50} height={50} /></span>
         </Link>
 
         <div className="flex flex-col space-y-2  md:px-6 ">
